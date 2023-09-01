@@ -1,5 +1,11 @@
 import { Schema, model } from "mongoose";
-import Comment from "../types/comment";
+
+interface Comment {
+    id: string,
+    content: string,
+    user: string,
+    timestamp: number,
+};
 
 const commentSchema = new Schema<Comment>({
     id: { type: String, required: true },
@@ -9,3 +15,4 @@ const commentSchema = new Schema<Comment>({
 });
 
 export default model<Comment>("Comment", commentSchema);
+export { Comment };

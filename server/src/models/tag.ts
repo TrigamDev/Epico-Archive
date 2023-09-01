@@ -1,5 +1,10 @@
 import { Schema, model } from "mongoose";
-import Tag from "../types/tag";
+
+interface Tag {
+    value: string,
+    type: string,
+    safe: boolean,
+};
 
 const tagSchema = new Schema<Tag>({
     value: { type: String, required: true },
@@ -8,3 +13,4 @@ const tagSchema = new Schema<Tag>({
 });
 
 export default model<Tag>("Tag", tagSchema);
+export { Tag };
