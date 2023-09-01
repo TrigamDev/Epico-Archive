@@ -2,13 +2,15 @@ import PostModel, { Post } from "../models/post.ts";
 import { Image } from "../models/image.ts";
 import { Tag } from "../models/tag.ts";
 import { Comment } from "../models/comment.ts";
+import { checkTags } from "../util/tags.ts";
 
 async function createPost(req: any, res: any) {
-    // Create the post
+    const posts = await PostModel.find().exec();
+    let tagList: Tag[] = await checkTags(req.body?.tags);
     let post: Post = {
         image: req.body?.image as Image,
-        id: req.body?.id as number,
-        tags: req.body?.tags as Tag[],
+        id: posts.length + 1,
+        tags: tagList,
         comments: [] as Comment[],
         timestamp: Date.now(),
     } as Post;

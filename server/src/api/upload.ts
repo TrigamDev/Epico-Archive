@@ -6,7 +6,6 @@ import fetch from "node-fetch";
 import { getBaseURL, getFullURL } from "../util/req.ts";
 
 import ImageModel, { Image } from "../models/image.ts";
-import { Tag } from "../models/tag.ts";
 
 async function upload(req: any, res: any) {
     // Fetch and save image
@@ -29,8 +28,7 @@ async function getImageData(req: any): Promise<Image> {
     let img: Image = {
         id: images.length + 1,
         url: url, layeredUrl: layeredUrl, thumbUrl: '',
-        timestamp: req.body?.timestamp as number,
-        tags: req.body?.tags as Tag[],
+        timestamp: req.body?.timestamp as number
     } as Image;
     return img;
 };
