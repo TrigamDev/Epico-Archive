@@ -1,0 +1,43 @@
+.gallery {
+    /* Layout */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    gap: 25px;
+    flex: 1 0 0;
+    align-self: stretch;
+    flex-wrap: wrap;
+}
+
+.gallery-img {
+    /* Style */
+    transition: 0.25s;
+    border-radius: 15px;
+    /* Layout */
+    width: 278px;
+    height: 278px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.gallery-img:hover {
+    /* Style */
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.gallery-img img {
+    /* Style */
+    border-radius: 15px;
+    /* Layout */
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.gallery-img.nsfw img {
+    /* Style */
+    filter: blur(2vmin);
+}
