@@ -1,16 +1,18 @@
 import './styles/App.css';
 
-import Navbar from './components/nav/Navbar';
-import Gallery from './components/gallery/Gallery';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
+import GalleryPage from "./components/galleryPage/Page";
+import PostPage from "./components/postPage/Page";
 
 function App() {
     return (
-        <div className="App">
-            <nav> <Navbar/> </nav>
-            <div className="content">
-                <main> <Gallery/> </main>
-            </div>
-        </div>
+        <Router>
+            <Routes>
+                <Route path="/" Component={GalleryPage} />
+                <Route path="/post/:postId" Component={PostPage} />
+            </Routes>
+        </Router>
     );
 }
 

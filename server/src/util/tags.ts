@@ -1,6 +1,6 @@
 import TagModel, { Tag } from "../models/tag.ts";
 
-export async function checkTags(tags: any[]) {
+export async function checkTags(tags: Tag[]) {
     for (let tag of tags) {
         tag = tag as Tag;
         if (!tag.value) tag.value = "unknown";
@@ -17,7 +17,7 @@ export async function checkTags(tags: any[]) {
     return tags;
 };
 
-export function uniqueTags(tags: any[]) {
+export function uniqueTags(tags: Tag[]) {
     let uniqueTags = [] as Tag[];
     for (let tag of tags) {
         tag = tag as Tag;

@@ -9,6 +9,7 @@
     margin-left: 15px;
     padding: 5px;
     flex-direction: column;
+    z-index: 10;
 }
 
 #menu-closed {
@@ -21,7 +22,7 @@
     font-size: larger;
     user-select: none;
     transition: 0.25s;
-    padding: 10px;
+    padding: 10px 20px;
     border-radius: 5px;
 }
 

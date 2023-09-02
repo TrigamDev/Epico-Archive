@@ -1,8 +1,9 @@
-import React from "react";
-import "../../styles/Gallery.css";
+import "../../../styles/Gallery.css";
 
-import Post from "../../models/Post.ts";
-import Tag from "../../models/Tag.ts";
+import React from "react";
+
+import Post from "../../../models/Post.ts";
+import Image from "./Image.tsx";
 
 function Gallery() {
     const [posts, setPosts] = React.useState<Post[]>([]);
@@ -12,10 +13,10 @@ function Gallery() {
             const baseUrl = window.location.origin.split(":").slice(0, 2).join(":");
             const res = await fetch(`${baseUrl}:5050/api/posts`, { method: "GET" })
             const data = await res.json();
-            data.posts.sort((a: Post, b: Post) => {
+            data.sort((a: Post, b: Post) => {
                 return b.image.timestamp - a.image.timestamp;
             });
-            setPosts(data.posts as Post[]);
+            setPosts(data as Post[]);
         }
         loadPosts();
     }, []);
@@ -23,16 +24,10 @@ function Gallery() {
     return (
         <div className="gallery">
             {posts.map((post) => (
-                <div className="gallery-img">
-                    <img src={post.image.url} alt={tagsToString(post.tags)} title={tagsToString(post.tags)} />
-                </div>
+                <Image key={post.image.id} post={post} />
             ))}
         </div>
     )
-}
-
-function tagsToString(tags: Tag[]) {
-    return tags.map((tag) => tag.value).join(", ");
 }
 
 export default Gallery;

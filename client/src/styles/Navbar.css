@@ -51,6 +51,7 @@
 
 .navbar-button:active .navbar-icon {
     /* Style */
+    transition: 0.1s;
     transform: scale(1.1);
 }
 
@@ -61,7 +62,19 @@
     transform: rotate(180deg) scale(1.25);
 }
 
+.navbar-button:active #settings-icon {
+    /* Style */
+    transition: 0.1s;
+    transform: rotate(270deg) scale(1.1);
+}
+
 .navbar-button:hover #bookmarks-icon {
     /* Style */
-    transform: scaleY(1.25) scale(1.25);
+    transform: scaleY(1.1) scale(1.25);
+}
+
+.navbar-button:active #bookmarks-icon {
+    /* Style */
+    transition: 0.1s;
+    transform: scaleY(1.35) scale(1.25);
 }
