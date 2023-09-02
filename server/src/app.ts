@@ -9,6 +9,7 @@ import post from "./api/post.ts";
 import image from "./api/image.ts";
 import tag from "./api/tag.ts";
 import search from "./api/search.ts";
+import posts from "./api/posts.ts";
 
 const app = express();
 const jsonParser = bodyParser.json();
@@ -27,5 +28,6 @@ app.post("/api/tag", jsonParser, async (req, res) => { tag(req, res) });
 // Gets
 app.get("/api/image", jsonParser, async (req, res) => { image(req, res) });
 app.get("/api/search", jsonParser, async (req, res) => { search(req, res) });
+app.get("/api/posts", jsonParser, async (req, res) => { posts(req, res) });
 
 export default app;

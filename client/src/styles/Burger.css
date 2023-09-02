@@ -1,0 +1,32 @@
+.burger-menu {
+    /* Style */
+    background-color: var(--primary);
+    border-radius: 10px;
+    /* Layout */
+    display: flex;
+    position: absolute;
+    margin-top: 65px;
+    margin-left: 15px;
+    padding: 5px;
+    flex-direction: column;
+}
+
+#menu-closed {
+    /* Layout */
+    display: none;
+}
+
+.burger-menu-line {
+    /* Style */
+    font-size: larger;
+    user-select: none;
+    transition: 0.25s;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.burger-menu-line:hover {
+    /* Style */
+    background-color: var(--secondary);
+    cursor: pointer;
+}
