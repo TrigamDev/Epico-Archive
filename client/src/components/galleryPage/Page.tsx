@@ -1,5 +1,5 @@
-import Navbar from './nav/Navbar';
-import Gallery from './gallery/Gallery';
+import Navbar from './Navbar';
+import Gallery from './Gallery';
 
 function Page() {
     return (

@@ -2,7 +2,7 @@ const trigam = {
     text: "#111111",
     background: "#EEEEEE",
     primary: "#3F48CC",
-    secondary: "#8395E5",
+    secondary: "#5E67EA",
     accent: "#28217D",
 };
 const trigamDark = {

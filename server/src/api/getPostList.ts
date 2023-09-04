@@ -1,4 +1,4 @@
-import PostModel from '../models/post.ts';
+import PostModel from '../models/post.js';
 
 async function getAllPosts(req: any, res: any) {
     let posts = await PostModel.find().exec();

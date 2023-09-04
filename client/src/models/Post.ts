@@ -1,6 +1,13 @@
-import Image from "./Image.ts";
 import Tag from "./Tag.ts";
 import Comment from "./Comment.ts";
+
+interface Image {
+    id: number,
+    url: string,
+    layeredUrl?: string,
+    title: string,
+    timestamp: number,
+};
 
 interface Post {
     image: Image,
@@ -12,3 +19,4 @@ interface Post {
 };
 
 export default Post;
+export type { Image };

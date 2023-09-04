@@ -1,13 +1,13 @@
 import "animate.css";
-import "../../../styles/Navbar.css";
+import "../../styles/gallery/Navbar.css";
 
-import HamburgerMenu from "../menu/burger/Burger";
+import HamburgerMenu from "./Burger";
 
-import hamburgerMenu from "../../../assets/hamburger_menu.svg";
-import settings from "../../../assets/settings.svg";
-import profile from "../../../assets/profile.svg";
-import bookmarks from "../../../assets/bookmarks.svg";
-import search from "../../../assets/search.svg";
+import hamburgerMenu from "../../assets/icons/navbar/hamburger_menu.svg";
+import settings from "../../assets/icons/navbar/settings.svg";
+import profile from "../../assets/icons/navbar/profile.svg";
+import bookmarks from "../../assets/icons/navbar/bookmarks.svg";
+import search from "../../assets/icons/navbar/search.svg";
 import { useState } from "react";
 
 function Navbar() {

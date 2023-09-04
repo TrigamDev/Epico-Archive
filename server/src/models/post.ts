@@ -1,7 +1,14 @@
 import { Schema, model } from "mongoose";
-import { Image } from "./image.ts";
 import { Tag } from "./tag.ts";
 import { Comment } from "./comment.ts";
+
+interface Image {
+    id: number,
+    url: string,
+    layeredUrl?: string,
+    title: string,
+    timestamp: number,
+};
 
 interface Post {
     image: Image,
@@ -22,4 +29,4 @@ const postSchema = new Schema<Post>({
 });
 
 export default model<Post>("Post", postSchema);
-export { Post };
+export { Post, Image };

@@ -3,7 +3,7 @@ import { Schema, model } from "mongoose";
 interface Tag {
     value: string,
     type: string,
-    safe: boolean,
+    safe: boolean
 };
 
 const tagSchema = new Schema<Tag>({

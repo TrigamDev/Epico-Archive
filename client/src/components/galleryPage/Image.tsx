@@ -1,9 +1,9 @@
-import "../../../styles/Image.css";
+import "../../styles/gallery/Image.css";
 
 import React from "react";
 
-import Post from "../../../models/Post.ts";
-import Tag from "../../../models/Tag.ts";
+import Post from "../../models/Post.ts";
+import Tag from "../../models/Tag.ts";
 
 interface ImageProps {
     post: Post;
@@ -37,7 +37,7 @@ function GalleryImage(props: ImageProps) {
     return (
         <a href={`/post/${props.post.id}`} className="gallery-img-link">
             <div className={ parentClass }>
-                <img src={data} alt={tagStr} title={tagStr} onLoad={handleImageLoad}/>
+                <img src={data} alt={tagStr} title={props.post?.image?.title} onLoad={handleImageLoad}/>
             </div>
         </a>
     )

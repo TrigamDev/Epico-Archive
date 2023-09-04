@@ -1,4 +1,4 @@
 server/node_modules
 server/.env
-assets/art
+server/assets/art
 client/node_modules

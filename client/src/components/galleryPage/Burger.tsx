@@ -1,4 +1,4 @@
-import "../../../../styles/Burger.css";
+import "../../styles/gallery/Burger.css";
 import React from 'react';
 
 interface BurgerProps {
