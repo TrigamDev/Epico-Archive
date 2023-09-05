@@ -13,6 +13,9 @@ function GalleryImage(props: ImageProps) {
     const [data, setData] = React.useState<string>("");
     const [loaded, setLoaded] = React.useState<boolean>(false);
 
+    const sound = new Audio("/sounds/button/generic.mp3");
+    const playSound = () => { sound.currentTime = 0; sound.play(); };
+
     React.useEffect(() => {
         async function generateThumbnail() {
             const img = new Image();
@@ -35,7 +38,7 @@ function GalleryImage(props: ImageProps) {
     let parentClass = 'gallery-img ' + (loaded ? 'img-loaded' : 'img-loading');
 
     return (
-        <a href={`/post/${props.post.id}`} className="gallery-img-link">
+        <a href={`/post/${props.post.id}`} className="gallery-img-link" onMouseDown={playSound}>
             <div className={ parentClass }>
                 <img src={data} alt={tagStr} title={props.post?.image?.title} onLoad={handleImageLoad}/>
             </div>

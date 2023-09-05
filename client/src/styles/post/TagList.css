@@ -16,12 +16,26 @@
     /* Style */
     border-radius: 17.5px;
     background: var(--secondary);
+    transition: 0.35s;
     /* Layout */
     display: flex;
     height: 35px;
     padding: 0px 17.5px;
     align-items: center;
     gap: 10px;
+    user-select: none;
+    cursor: pointer;
+}
+
+.tag:hover {
+    /* Style */
+    transform: scale(1.1);
+}
+
+.tag:active {
+    /* Style */
+    transform: scale(1.05);
+    transition: 0.1s;
 }
 
 #tag-value {

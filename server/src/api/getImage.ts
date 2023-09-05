@@ -10,7 +10,6 @@ async function getArt(req: any, res: any) {
     if (!post) return res.status(404).send("Image not found");
     const file = post.image.url.split("/").pop();
 
-    // grab the image from <baseUrl>/assets/art/<id>
     let basePath: string = __dirname.replace('src', '') + `assets/art/${file}`;
     const img = fs.readFileSync(basePath);
     if (!img) return res.status(404).send("Image not found");

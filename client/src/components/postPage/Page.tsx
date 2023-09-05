@@ -62,11 +62,8 @@ function PostPage() {
                             <span className="data">Warnings: {warns.join(", ")}</span>
                         </div>
                     </div>
-                    <LinkList 
-                        imageUrl={post?.image?.url}
-                        layeredUrl={post?.image?.layeredUrl}
-                    />
-                    <TagList tags={post?.tags as Tag[]} />
+                    <LinkList post={post as Post} />
+                    <TagList tags={post?.tags as Tag[]} edit={false}/>
                 </div>
             </div>
             <div className="post-right">
