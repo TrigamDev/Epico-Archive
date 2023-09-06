@@ -2,66 +2,40 @@ import "../../styles/post/Post.css";
 
 import React from "react";
 import { useParams } from "react-router-dom";
-import moment from "moment";
+import { on, emit } from "../../util/events.ts";
 
-import Post, { Image } from "../../models/Post.ts";
+import Post from "../../models/Post.ts";
 import Tag from "../../models/Tag.ts";
-import { getContentWarnings } from "../../util/tags";
 import { get } from "../../util/api.ts";
 
 import Mininav from "./Mininav.tsx";
 import LinkList from "./LinkList.tsx";
 import TagList from "./TagList.tsx";
-
-interface ImageData {
-    width: number,
-    height: number,
-    size: number,
-    fileType: string | undefined
-}
+import PostData from "./PostData.tsx";
 
 function PostPage() {
     const { postId } = useParams();
     const [post, setPost] = React.useState<Post>();
-    const [imageData, setImageData] = React.useState<ImageData>();
+    const [editMode, setEditMode] = React.useState<boolean>(false);
 
-    React.useEffect(() => {
-        async function getPost() {
-            const res = await get(`post/${postId}`);
-            setPost(res);
-        }
-        getPost();
-    }, [postId]);
+    const loadPost = async () => {
+        const res = await get(`post/${postId}`);
+        setPost(res);
+    }
 
-    React.useEffect(() => {
-        async function getImageData() {
-            const data = await getImgData(post?.image as Image);
-            setImageData(data);
-        }
-        getImageData();
-    }, [post]);
+    // Fetch the poost from the database
+    React.useEffect(() => { loadPost(); });
 
-    let warns = getContentWarnings(post?.tags as Tag[]);
-    if (warns.length === 0) warns = ["none"];
+    on('post-save-data', (post: any) => {
+        console.log(post);
+    });
 
     return (
         <div id="post">
             <div className="post-left">
-                <Mininav />
+                <Mininav editMode={editMode} setEditMode={setEditMode} reload={loadPost}/>
                 <div id="content">
-                    <div id="post-data">
-                        <span id="post-title">{post?.image?.title}</span>
-                        <div id="post-info">
-                            <span className="data">Post ID: {post?.id}</span>
-                            <span className="data">Favorites: {post?.favorites}</span>
-                            <span className="data">Created: {formatTimestamp(post?.image?.timestamp)}</span>
-                            <span className="data">Uploaded: {formatTimestamp(post?.timestamp)}</span>
-                            <span className="data">Resolution: {imageData?.width}x{imageData?.height}</span>
-                            <span className="data">Size: {formatFileSize(imageData?.size)}</span>
-                            <span className="data">File Type: {imageData?.fileType}</span>
-                            <span className="data">Warnings: {warns.join(", ")}</span>
-                        </div>
-                    </div>
+                    <PostData post={post as Post} editMode={editMode} />
                     <LinkList post={post as Post} />
                     <TagList tags={post?.tags as Tag[]} edit={false}/>
                 </div>
@@ -77,33 +51,6 @@ function PostPage() {
             </div>
         </div>
     )
-}
-
-function formatTimestamp(timestamp: number | undefined) {
-    let timezoneOffset = new Date().getTimezoneOffset();
-    timestamp = (timestamp as number) - timezoneOffset;
-    return moment(timestamp).format("M/D/YYYY h:mm:ss a");
-}
-
-async function getImgData(image: Image): Promise<ImageData> {
-    const img = document.getElementById(image?.title as string) as HTMLImageElement;
-    if (!img) return { width: 0, height: 0, size: 0, fileType: "" };
-    // File Size
-    const res = await fetch(img.src);
-    const blob = await res.blob();
-    const size = blob.size;
-    // Other stuff
-    const fileType = img.src.split(".").pop();
-    const { naturalWidth: width, naturalHeight: height } = img;
-    return { width, height, size, fileType };
-}
-
-function formatFileSize(fileSize: number | undefined) {
-    if (!fileSize) return "0 B";
-    if (fileSize < 1000) return `${fileSize} B`;
-    else if (fileSize < 1000000) return `${Math.round(fileSize / 1000)} KB`;
-    else if (fileSize < 1000000000) return `${Math.round(fileSize / 1000000)} MB`;
-    else return `${Math.round(fileSize / 1000000000)} GB`;
 }
 
 export default PostPage;
